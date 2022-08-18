@@ -1,11 +1,11 @@
-var characterLenght = 8;
-var choiceArr = [];
+var characterLenght = 8; //initial value 
+var choiceSelect = [];
 
 // doesn't support \ " '
-var lowerCaseArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var upperCaseArr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var specialCharArr = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '_', '+', '`', '~', '[', ']', '{', '}', '|', ';', ':', '<', '>', ',', '.', '?', '/' ];
-var numberArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var specialCharacter = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '_', '+', '`', '~', '[', ']', '{', '}', '|', ';', ':', '<', '>', ',', '.', '?', '/' ];
+var numberList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate"); // target at generate ID (html)
@@ -14,34 +14,34 @@ var generateBtn = document.querySelector("#generate"); // target at generate ID 
 function generatePassword(){
   var password = '';
   for(var i = 0; i< characterLenght; i++){
-    var randomIndex = Math.floor(Math.random() * choiceArr.length);
-    password = password + choiceArr[randomIndex];
+    var randomIndex = Math.floor(Math.random() * choiceSelect.length);
+    password = password + choiceSelect[randomIndex];
   }
   return password;
 }
 
-// define getPrompts function
-function getPrompts(){
-  choiceArr = [];
+// define passwowrdPrompt function
+function passwowrdPrompt(){
+  choiceSelect = [];
 
-  characterLenght = parseInt(prompt("How many characters do you want your password to be (8-128)?"));
+  characterLenght = parseInt(prompt("How long do you want your password to be (8-128 characters)?")); // redefine the variable 
 
   if(isNaN(characterLenght) || characterLenght <8 || characterLenght >128) { // all false scenarios
-    alert("Character length has to be a number, 8 - 128 digits. please try again.")
+    alert("Please enter valid number (8-128)!")
     return false; // stop the function 
   }
 
-  if(confirm("would you like lowercase letters in your passwords?")){
-    choiceArr = choiceArr.concat(lowerCaseArr);
+  if(confirm("Click OK if you would like lowercase letters in your passwords.")){
+    choiceSelect = choiceSelect.concat(lowerCase);
   }
-  if(confirm("would you like uppercase letters in your passwords?")){
-    choiceArr = choiceArr.concat(upperCaseArr);
+  if(confirm("Click OK if you would like uppercase letters in your passwords.")){
+    choiceSelect = choiceSelect.concat(upperCase);
   }
-  if(confirm("would you like special characters in your passwords?")){
-    choiceArr = choiceArr.concat(specialCharArr);
+  if(confirm("Click OK if you would like special characters in your passwords.")){
+    choiceSelect = choiceSelect.concat(specialCharacter);
   }
-  if(confirm("would you like numbers in your passwords?")){
-    choiceArr = choiceArr.concat(numberArr);
+  if(confirm("Click OK if you would like numbers in your passwords.")){
+    choiceSelect = choiceSelect.concat(numberList);
   }
   return true;
 
@@ -49,10 +49,10 @@ function getPrompts(){
 
 // Write password to the #password input
 function writePassword() {
-  var correctPrompts = getPrompts(); // returns either true of false
+  var returnPrompt = passwowrdPrompt(); // returns either true of false
   var passwordText = document.querySelector("#password"); // target at password id (html)
 
-  if(correctPrompts) {
+  if(returnPrompt) {
     var newPassword = generatePassword(); //need to write the generatePassword function, after defining the generatePassword function, the value is store at "password" variable 
     
     // start your code here: 
