@@ -42,4 +42,4 @@ The following image shows the web application's appearance and functionality:
 
 ## Link To Deployed Application
 
-https://shelldan.github.io/Password_Generator/
+https://shelldan.github.io/password-generator/
